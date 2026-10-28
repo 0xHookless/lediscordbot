@@ -45,7 +45,7 @@ function MessageRow({ msg, grouped, ch, isMention }) {
   };
   const viaName = msg.via ? app.staffById[msg.via]?.name || (msg.via === app.me.id ? app.me.name : 'staff') : null;
   const ref = msg.reference;
-  const refName = ref?.authorName || (msg.temp && app.replyTo?.id === ref?.messageId ? app.replyTo.name : null);
+  const refName = ref ? ref.authorName || (msg.temp && app.replyTo && app.replyTo.id === ref.messageId ? app.replyTo.name : null) : null;
   const nameColor = app.color(msg.author.color) || 'var(--fg)';
   const cls = ['msg', grouped ? '' : 'first', isMention ? 'mention' : '', app.highlight === msg.id ? 'hl' : '', msg.pending || msg.failed ? 'dim' : ''].join(' ');
 
