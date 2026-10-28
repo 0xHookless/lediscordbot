@@ -1,0 +1,11 @@
+# Only needed for a locally managed tunnel (the Linux route in the README).
+# On Windows, the dashboard-managed tunnel in the README is simpler and needs no file.
+# Copy to ~/.cloudflared/config.yml and replace the placeholders.
+
+tunnel: <TUNNEL-ID>
+credentials-file: /home/<you>/.cloudflared/<TUNNEL-ID>.json
+
+ingress:
+  - hostname: console.yourdomain.com
+    service: http://127.0.0.1:3000
+  - service: http_status:404

@@ -1,0 +1,17 @@
+# Linux alternative to the NSSM service. Copy to /etc/systemd/system/, then:
+#   sudo systemctl daemon-reload && sudo systemctl enable --now staff-console
+[Unit]
+Description=Staff Console (Discord bot and dashboard)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+WorkingDirectory=/opt/staff-console
+ExecStart=/usr/bin/node src/index.js
+Restart=always
+RestartSec=5
+User=staffconsole
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
